@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  cloud-storage:
+    image: fsouza/fake-gcs-server
+    tty: true
+    ports:
+      - "4443:4443"
+    volumes:
+      - ./tmp/:/data/tmp
+      - ./.storage:/storage
+
+    command: -scheme http -port 4443 -public-host cloud-storage
